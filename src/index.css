@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+.footerList a {
+  list-style: none;
+  padding: 15px 20px;
+  border-radius: 50px;
+  /*display: inline-block;*/
+  width: 30%;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+  overflow: hidden;
+  word-wrap: none;
+  word-break: keep-all;
+  font-family: Inter, sans-serif;
+}
+
+.footerList a:hover {
+  background: #00000028;
+}

@@ -1,4 +1,5 @@
 import "./App.css";
+import { FooterDashboard } from "./components/FooterDashboard";
 import { HeaderDashboard } from "./components/HeaderDashboard";
 
 function App() {
@@ -6,6 +7,9 @@ function App() {
     <>
       <div>
         <HeaderDashboard />
+      </div>
+      <div className="grid place-items-center">
+        <FooterDashboard />
       </div>
     </>
   );
