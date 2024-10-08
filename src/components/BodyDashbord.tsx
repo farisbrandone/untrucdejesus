@@ -1,4 +1,5 @@
 import React from "react";
+import { SlideComponents } from "./SlideComponents";
 
 function BodyDashbord() {
   return (
@@ -178,6 +179,9 @@ function BodyDashbord() {
             <span className="text-[#f1c40f]">&nbsp;</span>✨
           </span>
         </p>
+      </div>
+      <div className="w-full">
+        <SlideComponents />
       </div>
     </div>
   );
