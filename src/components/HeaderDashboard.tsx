@@ -2,7 +2,7 @@ import React from "react";
 
 export function HeaderDashboard() {
   return (
-    <div className="w-full py-4 px-5 bg-slate-200 fixed">
+    <div className="w-full py-3 px-5 flex items-center  bg-white fixed top-0 shadow-lg ">
       <img
         src="https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png"
         alt="Logo"
@@ -10,11 +10,11 @@ export function HeaderDashboard() {
         height={40}
         className="mx-auto"
       />
-      <div className="absolute w-[40px] h-[40px] grid place-items-center bg-[#e6f7ff] text-[#bd10e0] right-5 top-4">
+      <div className="absolute w-[30px] h-[30px] rounded-[10px] grid place-items-center bg-[#e6f7ff] text-[#bd10e0] right-5 top-3 my-auto">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
+          width="15"
+          height="15"
           viewBox="0 0 24 24"
           fill="currentColor"
           stroke="currentColor"

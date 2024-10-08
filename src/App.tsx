@@ -1,16 +1,19 @@
 import "./App.css";
+import { BodyDashbord } from "./components/BodyDashbord";
 import { FooterDashboard } from "./components/FooterDashboard";
 import { HeaderDashboard } from "./components/HeaderDashboard";
 
 function App() {
   return (
     <>
-      <div>
-        <HeaderDashboard />
+      <HeaderDashboard />
+
+      <div className="max-w-[1200px] m-auto mt-[80px] flex items-center">
+        <BodyDashbord />
       </div>
-      <div className="grid place-items-center">
+      <footer className="grid place-items-center hidden">
         <FooterDashboard />
-      </div>
+      </footer>
     </>
   );
 }
