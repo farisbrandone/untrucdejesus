@@ -174,5 +174,11 @@ li {
     background-position: 0 0;
   }
 }
+.btn {
+  @apply rounded-[10px];
+  @apply h-[33px];
+  @apply w-[33px];
+  @apply p-0;
+}
 
 /*******************************/
