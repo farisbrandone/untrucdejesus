@@ -11,7 +11,7 @@ importScripts(
 
 (function (self) {
   let messaging;
-
+  console.log("nana");
   const firebaseConfig = {
     apiKey: "AIzaSyDVLs9ZTU8F5JuderX7A3tprvPtmSpmgx0",
     authDomain: "carte-interactive-e3ecd.firebaseapp.com",
@@ -26,7 +26,6 @@ importScripts(
   messaging = firebase.messaging();
   console.log({ messaging });
   db = firebase.firestore();
-  console.log(db);
 
   citiesRef = db.collection("Notifications");
   console.log(citiesRef);
@@ -71,6 +70,7 @@ importScripts(
     /**lorsque tu t'active tu doit automatiquement
      * prendre le controle de la page
      */
+    console.log("activate");
     clients.claim();
 
     /**vider les autres caches avant moi */
@@ -92,6 +92,7 @@ importScripts(
   });
 
   self.addEventListener("push", async function (event) {
+    console.log("push");
     const message = event.data.json();
     console.log({ message });
 
@@ -143,6 +144,8 @@ importScripts(
   });
 
   self.addEventListener("notificationclick", (event) => {
+    console.log({ sw: "notificationclick" });
+
     const { notification } = event;
     const {
       data: { actionUrl },
