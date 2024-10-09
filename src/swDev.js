@@ -29,7 +29,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/fireba
 import { initializeApp } from "firebase/app";
 import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getMessaging, isSupported, getToken } from "firebase/messaging";
-
+import { isSupported as isSwSupported } from "firebase/messaging/sw";
 const firebaseConfig = {
   apiKey: "AIzaSyDVLs9ZTU8F5JuderX7A3tprvPtmSpmgx0",
   authDomain: "carte-interactive-e3ecd.firebaseapp.com",
