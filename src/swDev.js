@@ -1,4 +1,4 @@
-import {} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+/* import {} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -15,7 +15,7 @@ import {
   where,
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-// Import `firebase-messaging` at the top
+
 import {
   getMessaging,
   onMessage,
@@ -24,7 +24,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-messaging.js";
 import { isSupported as isSwSupported } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-messaging-sw.js";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"; */
+
+import { initializeApp } from "firebase/app";
+import { collection, addDoc, getFirestore } from "firebase/firestore";
+import { getMessaging, isSupported, getToken } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVLs9ZTU8F5JuderX7A3tprvPtmSpmgx0",
@@ -40,7 +44,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const citiesRef = collection(db, "Notifications");
 
-(async function swDev(window) {
+async function swDev(window) {
   if (!isSupported()) {
     console.log("ninia");
     return;
@@ -128,4 +132,8 @@ const citiesRef = collection(db, "Notifications");
       console.log(e);
     });*/
   }
-})(window);
+}
+
+window.onload = async function () {
+  await swDev(window);
+};
