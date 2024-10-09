@@ -27,7 +27,8 @@ const db = getFirestore(app);
 
 export function HeaderDashboard() {
   const [notification, setNotification] = useState<any[]>([]);
-
+  const [loading, setLoading] = useState(true);
+  const [errorLoad, setErrorLoad] = useState("");
   /*const querySnapshot = await getDocs(collection(db, "Notifications"));
   querySnapshot.forEach((doc) => {
     console.log(`${doc.id} => ${doc.data()}`);
@@ -62,25 +63,36 @@ export function HeaderDashboard() {
   };
   useEffect(() => {
     (async () => {
-      const querySnapshot = await getDocs(collection(db, "Notifications"));
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().title}`);
-      });
-      if (querySnapshot && querySnapshot.docs.length !== 0) {
-        const arrayNotification: any[] = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "Notifications"));
         querySnapshot.forEach((doc) => {
-          arrayNotification.push({
-            id: doc.id,
-            title: doc.data().title,
-            body: doc.data().body,
-          });
+          console.log(`${doc.id} => ${doc.data().title}`);
         });
-        const unreadNotification = querySnapshot.docs.length;
-        console.log(unreadNotification);
-        setNotification([...arrayNotification]);
+        if (querySnapshot && querySnapshot.docs.length !== 0) {
+          const arrayNotification: any[] = [];
+          querySnapshot.forEach((doc) => {
+            arrayNotification.push({
+              id: doc.id,
+              title: doc.data().title,
+              body: doc.data().body,
+            });
+          });
+          const unreadNotification = querySnapshot.docs.length;
+          console.log(unreadNotification);
+          setNotification([...arrayNotification]);
+        }
+        setLoading(false);
+      } catch (error) {
+        setErrorLoad("Une erreur est survenu: vérifier votre connexion");
+      } finally {
+        setLoading(false);
       }
     })();
   }, []);
+
+  if (loading) {
+    console.log(errorLoad);
+  }
 
   return (
     <div className="w-full py-3 px-5 flex items-center box-content  bg-white fixed top-0 shadow-lg z-[6000]">
