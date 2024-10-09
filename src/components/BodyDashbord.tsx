@@ -1,4 +1,3 @@
-import React from "react";
 import { SlideComponents } from "./SlideComponents";
 
 function BodyDashbord() {

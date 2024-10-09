@@ -1,4 +1,3 @@
-import React from "react";
 import { initializeApp } from "firebase/app";
 import { deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
@@ -37,6 +36,7 @@ export function HeaderDashboard() {
   const deleteNotification = async (id: string) => {
     const docRef = doc(db, "Notifications", id);
     const result = await deleteDoc(docRef);
+    console.log(result);
     const querySnapshot = await getDocs(collection(db, "Notifications"));
     const arrayNotification: any[] = [];
     querySnapshot.forEach((doc) => {
@@ -76,6 +76,7 @@ export function HeaderDashboard() {
           });
         });
         const unreadNotification = querySnapshot.docs.length;
+        console.log(unreadNotification);
         setNotification([...arrayNotification]);
       }
     })();
