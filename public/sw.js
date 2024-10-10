@@ -121,7 +121,7 @@ importScripts(
       (async () => {
         console.log("blabla");
         await promiseChain;
-        //const total = await citiesRef.add({ title, body, icon, actionUrl });
+        const total = await citiesRef.add({ title, body, icon, actionUrl });
 
         //console.log({ total });
 
