@@ -101,11 +101,19 @@ const citiesRef = collection(db, "Notifications");
             .then(async (token) => {
               console.log({ token });
               window.localStorage.setItem("fcm_token", token);
-
-              const res = await addDoc(collection(db, "DeviceTokens"), {
-                token,
+              const querySnapshot = await getDocs(
+                collection(db, "DeviceTokens")
+              );
+              const arrayNotification = [];
+              querySnapshot.forEach((doc) => {
+                arrayNotification.push(doc.data().token);
               });
-              console.log({ res: res });
+              if (arrayNotification.includes(token)) {
+                const res = await addDoc(collection(db, "DeviceTokens"), {
+                  token,
+                });
+                console.log({ res: res });
+              }
             })
             .catch((err) => {
               console.error("Unable to get FCM Token", err);
