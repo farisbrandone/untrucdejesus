@@ -43,7 +43,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const citiesRef = collection(db, "Notifications");
 
-async function swDev(window) {
+(async function swDev(window) {
   if (!isSupported()) {
     console.log("ninia");
     return;
@@ -131,8 +131,8 @@ async function swDev(window) {
       console.log(e);
     });*/
   }
-}
+})(window);
 
-window.onload = async function () {
+/*window.onload = async function () {
   await swDev(window);
-};
+};*/
