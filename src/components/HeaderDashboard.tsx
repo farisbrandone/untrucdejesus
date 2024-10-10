@@ -69,6 +69,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
   useEffect(() => {
     (async () => {
       try {
+        console.log("doudou");
         const querySnapshot = await getDocs(collection(db, "Notifications"));
         querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${doc.data().title}`);
@@ -87,13 +88,14 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
           setNotification([...arrayNotification]);
         }
         setLoading(false);
+        console.log("la fin");
       } catch (error) {
         setErrorLoad("Une erreur est survenu: vérifier votre connexion");
       } finally {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [loading]);
 
   if (loading) {
     console.log(errorLoad);

@@ -10,6 +10,7 @@ function App() {
   if (loading) {
     return (
       <div className="w-[100vw] h-[100vh] flex items-center justify-center ">
+        <HeaderDashboard loading={loading} setLoading={setLoading} />
         <span className="loading loading-spinner loading-lg text-[#bd10e0] "></span>
       </div>
     );
