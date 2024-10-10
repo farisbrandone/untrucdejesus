@@ -25,9 +25,14 @@ const db = getFirestore(app);
   body: string;
 }*/
 
-export function HeaderDashboard() {
+interface loadingType {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  loading: boolean;
+}
+
+export function HeaderDashboard({ loading, setLoading }: loadingType) {
   const [notification, setNotification] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const [errorLoad, setErrorLoad] = useState("");
   /*const querySnapshot = await getDocs(collection(db, "Notifications"));
   querySnapshot.forEach((doc) => {

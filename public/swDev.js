@@ -108,7 +108,7 @@ const citiesRef = collection(db, "Notifications");
               querySnapshot.forEach((doc) => {
                 arrayNotification.push(doc.data().token);
               });
-              if (arrayNotification.includes(token)) {
+              if (!arrayNotification.includes(token)) {
                 const res = await addDoc(collection(db, "DeviceTokens"), {
                   token,
                 });
