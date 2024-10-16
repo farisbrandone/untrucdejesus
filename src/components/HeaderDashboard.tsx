@@ -44,6 +44,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
     const docRef = doc(db, "Notifications", id);
     try {
       const result = await deleteDoc(docRef);
+      console.log(result);
       console.log({ dinco: "susu" });
       const querySnapshot = await getDocs(collection(db, "Notifications"));
       const arrayNotification: any[] = [];
@@ -92,7 +93,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
           });
           const unreadNotification = querySnapshot.docs.length;
           console.log(unreadNotification);
-          setNotification((prev) => [...arrayNotification]);
+          setNotification(() => [...arrayNotification]);
         }
         setLoading(false);
         console.log("la fin");
