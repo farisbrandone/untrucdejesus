@@ -11,25 +11,21 @@ importScripts(
 
 (function (self) {
   let messaging;
-  console.log("nana");
   const firebaseConfig = {
-    apiKey: "AIzaSyDVLs9ZTU8F5JuderX7A3tprvPtmSpmgx0",
-    authDomain: "carte-interactive-e3ecd.firebaseapp.com",
-    projectId: "carte-interactive-e3ecd",
-    storageBucket: "carte-interactive-e3ecd.appspot.com",
-    messagingSenderId: "293631422400",
-    appId: "1:293631422400:web:6adbc60f1ba0f23a0be225",
-    measurementId: "G-BNSYY511FN",
+    apiKey: "AIzaSyBqHomX-GSUzQOf9j6g3G4HNGTlQPtySdk",
+    authDomain: "un-truc-de-jesus-carte.firebaseapp.com",
+    projectId: "un-truc-de-jesus-carte",
+    storageBucket: "un-truc-de-jesus-carte.appspot.com",
+    messagingSenderId: "255170124059",
+    appId: "1:255170124059:web:9b7818ec3f7e5b127b9bbe",
+    measurementId: "G-E7R22DLZ61",
   };
 
   firebase.initializeApp(firebaseConfig);
   messaging = firebase.messaging();
-  console.log({ messaging });
   db = firebase.firestore();
-
   citiesRef = db.collection("Notifications");
-  console.log(citiesRef);
-  const PREFIX = "PAPA";
+  const PREFIX = "key_cache";
 
   self.addEventListener("install", (event) => {
     self.skipWaiting();
@@ -92,55 +88,205 @@ importScripts(
   });
 
   self.addEventListener("push", async function (event) {
+    event.preventDefault();
     console.log("push");
     const message = event.data.json();
     console.log({ message });
 
     const {
-      notification: { title, body, actionUrl = "", icon = "" },
+      notification: { title, body },
     } = message;
+    const titleIcon = title.split("$-*");
+    const bodyAction = body.split("$-*");
 
-    console.log({ newversion: { title, body, actionUrl, icon } });
-    const notificationOptions = {
-      body,
-      icon,
-      data: {
-        actionUrl,
-      },
-    };
+    console.log({ titleIcon, bodyAction });
 
-    const promiseChain = new Promise((resolve) => {
-      self.registration
-        .showNotification(title, notificationOptions)
-        .then(() => resolve());
-    });
+    //console.log({ newversion: { title, body, actionUrl, icon } });
 
-    console.log({ premier: "first console" });
+    if (bodyAction.length < 2 && titleIcon.length < 2) {
+      const trueTitle = titleIcon[0];
+      const trueBody = bodyAction[0];
 
-    event.waitUntil(
-      (async () => {
-        console.log("blabla");
-        await promiseChain;
-        const total = await citiesRef.add({ title, body, icon, actionUrl });
+      const notificationOptions = {
+        body: trueBody,
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: "vibration-sample",
+        actions: [
+          {
+            action: "Cliquez ici",
+            title: "Cliquez ici",
+          },
+        ],
+      };
 
-        //console.log({ total });
+      const promiseChain = new Promise((resolve) => {
+        self.registration
+          .showNotification(trueTitle, notificationOptions)
+          .then(() => resolve("ddd"));
+      });
+      event.waitUntil(
+        (async () => {
+          //const total = await citiesRef.add({ title, body, icon, actionUrl })
+          //console.log({ total });
+          const [showNotif, querySnapshot] = await promise.all([
+            promiseChain,
+            citiesRef.get(),
+          ]);
+          //const querySnapshot = await citiesRef.get();
+          console.log({ showNotif });
+          //console.log({ querySnapshot });
+          const unreadNotification = querySnapshot.docs.length;
+          console.log({ unreadNotification });
 
-        const querySnapshot = await citiesRef.get();
-        console.log({ querySnapshot });
-        const unreadNotification = querySnapshot.docs.length;
-        console.log({ unreadNotification });
-
-        if (navigator.setAppBadge) {
-          console.log("The App Badging API is supported inside push!");
-          console.log({ pushNavigator: navigator });
-          if (unreadNotification === 0 || unreadNotification) {
-            navigator.clearAppBadge();
-          } else {
-            navigator.setAppBadge(unreadNotification);
+          if (navigator.setAppBadge) {
+            console.log("The App Badging API is supported inside push!");
+            console.log({ pushNavigator: navigator });
+            if (unreadNotification === 0 || unreadNotification) {
+              navigator.clearAppBadge();
+            } else {
+              navigator.setAppBadge(unreadNotification);
+            }
           }
-        }
-      })()
-    );
+        })()
+      );
+    } else if (bodyAction.length === 2 && titleIcon.length === 2) {
+      const notificationOptions = {
+        body: bodyAction[0],
+        icon: titleIcon[1],
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: "vibration-sample",
+        actions: [
+          {
+            action: "Cliquez ici",
+            title: "Cliquez ici",
+          },
+        ],
+        data: {
+          actionUrl: bodyAction[1],
+        },
+      };
+
+      const promiseChain = new Promise((resolve) => {
+        self.registration
+          .showNotification(titleIcon[0], notificationOptions)
+          .then(() => resolve("dede"));
+      });
+      event.waitUntil(
+        (async () => {
+          //const total = await citiesRef.add({ title, body, icon, actionUrl })
+          //console.log({ total });
+          const [showNotif, querySnapshot] = await promise.all([
+            promiseChain,
+            citiesRef.get(),
+          ]);
+          //const querySnapshot = await citiesRef.get();
+          console.log({ showNotif });
+          //console.log({ querySnapshot });
+          const unreadNotification = querySnapshot.docs.length;
+          console.log({ unreadNotification });
+
+          if (navigator.setAppBadge) {
+            console.log("The App Badging API is supported inside push!");
+            console.log({ pushNavigator: navigator });
+            if (unreadNotification === 0 || unreadNotification) {
+              navigator.clearAppBadge();
+            } else {
+              navigator.setAppBadge(unreadNotification);
+            }
+          }
+        })()
+      );
+    } else if (bodyAction.length < 2 && titleIcon.length === 2) {
+      const notificationOptions = {
+        body: bodyAction[0],
+        icon: titleIcon[1],
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: "vibration-sample",
+        actions: [
+          {
+            action: "Cliquez ici",
+            title: "Cliquez ici",
+          },
+        ],
+      };
+
+      const promiseChain = new Promise((resolve) => {
+        self.registration
+          .showNotification(titleIcon[0], notificationOptions)
+          .then(() => resolve("zzzz"));
+      });
+      event.waitUntil(
+        (async () => {
+          //const total = await citiesRef.add({ title, body, icon, actionUrl })
+          //console.log({ total });
+          const [showNotif, querySnapshot] = await promise.all([
+            promiseChain,
+            citiesRef.get(),
+          ]);
+          //const querySnapshot = await citiesRef.get();
+          console.log({ showNotif });
+          //console.log({ querySnapshot });
+          const unreadNotification = querySnapshot.docs.length;
+          console.log({ unreadNotification });
+
+          if (navigator.setAppBadge) {
+            console.log("The App Badging API is supported inside push!");
+            console.log({ pushNavigator: navigator });
+            if (unreadNotification === 0 || unreadNotification) {
+              navigator.clearAppBadge();
+            } else {
+              navigator.setAppBadge(unreadNotification);
+            }
+          }
+        })()
+      );
+    } else if (bodyAction.length === 2 && titleIcon.length < 2) {
+      const notificationOptions = {
+        body: bodyAction[0],
+        vibrate: [200, 100, 200, 100, 200, 100, 200],
+        tag: "vibration-sample",
+        actions: [
+          {
+            action: "Cliquez ici",
+            title: "Cliquez ici",
+          },
+        ],
+        data: {
+          actionUrl: bodyAction[1],
+        },
+      };
+
+      const promiseChain = new Promise((resolve) => {
+        self.registration
+          .showNotification(titleIcon[0], notificationOptions)
+          .then(() => resolve("aaaa"));
+      });
+      event.waitUntil(
+        (async () => {
+          //const total = await citiesRef.add({ title, body, icon, actionUrl })
+          //console.log({ total });
+          const [showNotif, querySnapshot] = await promise.all([
+            promiseChain,
+            citiesRef.get(),
+          ]);
+          //const querySnapshot = await citiesRef.get();
+          console.log({ showNotif });
+          //console.log({ querySnapshot });
+          const unreadNotification = querySnapshot.docs.length;
+          console.log({ unreadNotification });
+
+          if (navigator.setAppBadge) {
+            console.log("The App Badging API is supported inside push!");
+            console.log({ pushNavigator: navigator });
+            if (unreadNotification === 0 || unreadNotification) {
+              navigator.clearAppBadge();
+            } else {
+              navigator.setAppBadge(unreadNotification);
+            }
+          }
+        })()
+      );
+    }
   });
 
   self.addEventListener("notificationclick", (event) => {
@@ -157,7 +303,6 @@ importScripts(
       clients
         .matchAll({ type: "window", includeUncontrolled: true })
         .then((clientsArr) => {
-          // If a Window tab matching the targeted URL already exists, focus that;
           const hadWindowToFocus = clientsArr.some((windowClient) => {
             if (windowClient.url === actionUrl) {
               console.log("django");
@@ -165,8 +310,6 @@ importScripts(
               return true;
             }
           });
-
-          // Otherwise, open a new tab to the applicable URL and focus it.
           if (!hadWindowToFocus) {
             return clients.openWindow(actionUrl);
           }

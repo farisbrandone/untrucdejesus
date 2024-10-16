@@ -4,13 +4,13 @@ import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDVLs9ZTU8F5JuderX7A3tprvPtmSpmgx0",
-  authDomain: "carte-interactive-e3ecd.firebaseapp.com",
-  projectId: "carte-interactive-e3ecd",
-  storageBucket: "carte-interactive-e3ecd.appspot.com",
-  messagingSenderId: "293631422400",
-  appId: "1:293631422400:web:6adbc60f1ba0f23a0be225",
-  measurementId: "G-BNSYY511FN",
+  apiKey: "AIzaSyBqHomX-GSUzQOf9j6g3G4HNGTlQPtySdk",
+  authDomain: "un-truc-de-jesus-carte.firebaseapp.com",
+  projectId: "un-truc-de-jesus-carte",
+  storageBucket: "un-truc-de-jesus-carte.appspot.com",
+  messagingSenderId: "255170124059",
+  appId: "1:255170124059:web:9b7818ec3f7e5b127b9bbe",
+  measurementId: "G-E7R22DLZ61",
 };
 
 // Initialize Firebase
@@ -40,30 +40,37 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
   });*/
 
   const deleteNotification = async (id: string) => {
+    console.log("ttttt", id);
     const docRef = doc(db, "Notifications", id);
-    const result = await deleteDoc(docRef);
-    console.log(result);
-    const querySnapshot = await getDocs(collection(db, "Notifications"));
-    const arrayNotification: any[] = [];
-    querySnapshot.forEach((doc) => {
-      arrayNotification.push({
-        id: doc.id,
-        title: doc.data().title,
-        body: doc.data().body,
+    try {
+      const result = await deleteDoc(docRef);
+      console.log({ dinco: "susu" });
+      const querySnapshot = await getDocs(collection(db, "Notifications"));
+      const arrayNotification: any[] = [];
+      querySnapshot.forEach((doc) => {
+        arrayNotification.push({
+          id: doc.id,
+          title: doc.data().title,
+          body: doc.data().body,
+        });
       });
-    });
-    setNotification([...arrayNotification]);
-    const unreadNotification = querySnapshot.docs.length;
-    console.log({ unreadNotification });
+      setNotification([...arrayNotification]);
+      const unreadNotification = querySnapshot.docs.length;
+      console.log({ unreadNotification });
 
-    if (navigator.setAppBadge) {
-      console.log("The App Badging API is supported!");
-      console.log({ navigator });
-      if (unreadNotification === 0) {
-        navigator.clearAppBadge();
-      } else if (unreadNotification) {
-        navigator.setAppBadge(unreadNotification);
+      if (navigator.setAppBadge) {
+        console.log("The App Badging API is supported!");
+        console.log({ navigator });
+        if (unreadNotification === 0) {
+          navigator.clearAppBadge();
+        } else if (unreadNotification) {
+          navigator.setAppBadge(unreadNotification);
+        }
       }
+      window.location.reload();
+    } catch (error) {
+      console.log("took");
+      console.error(error);
     }
   };
   useEffect(() => {
@@ -85,7 +92,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
           });
           const unreadNotification = querySnapshot.docs.length;
           console.log(unreadNotification);
-          setNotification([...arrayNotification]);
+          setNotification((prev) => [...arrayNotification]);
         }
         setLoading(false);
         console.log("la fin");
@@ -96,6 +103,12 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
       }
     })();
   }, [loading]);
+  useEffect(() => {
+    navigator.serviceWorker.addEventListener("message", (e) => {
+      console.log({ onMessage: e.data.notification });
+      //setNotification((prev) => [...prev,e.data.notification]);
+    });
+  }, []);
 
   if (loading) {
     console.log(errorLoad);
@@ -135,15 +148,17 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content -right-3 menu bg-[#f8e71c] rounded-box z-[1] w-52 p-2 mr-4 shadow"
+          className="dropdown-content -right-3 menu bg-white text-gray-800 rounded-box z-[1] w-52 p-2 mr-4 shadow"
         >
           {notification.length !== 0 ? (
             notification.map((doc, index) => {
               return (
-                <li key={index} onClick={() => deleteNotification(doc.id)}>
-                  <a href="" className="text-black font-semibold">
-                    {doc.title}
-                  </a>
+                <li
+                  key={index}
+                  onClick={() => deleteNotification(doc.id)}
+                  className="cursor-pointer"
+                >
+                  <p className="text-black font-semibold">{doc.title}</p>
                 </li>
               );
             })
@@ -153,7 +168,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
         </ul>
       </div>
       {notification.length !== 0 && (
-        <div className="absolute top-[14px] w-[15px] h-[15px] bg-slate-600 text-white right-8 rounded-[20px] flex items-center justify-center ">
+        <div className="absolute top-[14px] w-[15px] h-[15px] bg-[#bd10e0] text-[#ffea00] right-8 rounded-[20px] flex items-center justify-center ">
           <span className="text-[10px] font-extrabold ">
             {notification.length}
           </span>

@@ -30,13 +30,13 @@ import { collection, addDoc, getFirestore } from "firebase/firestore";
 import { getMessaging, isSupported, getToken } from "firebase/messaging";
 import { isSupported as isSwSupported } from "firebase/messaging/sw";  */
 const firebaseConfig = {
-  apiKey: "AIzaSyDVLs9ZTU8F5JuderX7A3tprvPtmSpmgx0",
-  authDomain: "carte-interactive-e3ecd.firebaseapp.com",
-  projectId: "carte-interactive-e3ecd",
-  storageBucket: "carte-interactive-e3ecd.appspot.com",
-  messagingSenderId: "293631422400",
-  appId: "1:293631422400:web:6adbc60f1ba0f23a0be225",
-  measurementId: "G-BNSYY511FN",
+  apiKey: "AIzaSyBqHomX-GSUzQOf9j6g3G4HNGTlQPtySdk",
+  authDomain: "un-truc-de-jesus-carte.firebaseapp.com",
+  projectId: "un-truc-de-jesus-carte",
+  storageBucket: "un-truc-de-jesus-carte.appspot.com",
+  messagingSenderId: "255170124059",
+  appId: "1:255170124059:web:9b7818ec3f7e5b127b9bbe",
+  measurementId: "G-E7R22DLZ61",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -45,16 +45,12 @@ const citiesRef = collection(db, "Notifications");
 
 (async function swDev(window) {
   if (!isSupported()) {
-    console.log("ninia");
     return;
   } else if (!isSwSupported()) {
-    console.log("pipia");
     return;
   } else if (window.Notification.permission === "denied") {
-    console.log("zita");
     return;
   } else {
-    console.log({ inside: "SDK" });
     const messaging = getMessaging();
     console.log(messaging);
 
@@ -80,13 +76,11 @@ const citiesRef = collection(db, "Notifications");
             console.error("Can not update service worker", error)
           );
       } catch (error) {
-        // Oops. Registration was unsucessfull
         console.error("Can not register service worker", error);
       }
     };
 
     const requestPermission = async (messaging) => {
-      console.log("requestPermission");
       try {
         const permission = await window.Notification.requestPermission();
 
@@ -96,7 +90,7 @@ const citiesRef = collection(db, "Notifications");
           return getToken(messaging, {
             serviceWorkerRegistration,
             vapidKey:
-              "BIXvdU7_rASTtrF6PGhcnRfyzi2G52qTDQ_OEa6PBKAzV9BWZjEen7GBTPFsc7PIAsm5yS59CqdxVpwZUVpxoNM",
+              "BMsFehnpoVY7WSEW9Rjffbh8zMFKR_HC7sgGkjM0nE0tKMobiIyMo3t3e4JqRbPxIQeAYqpn-b7mYdhdRSmM1TM",
           })
             .then(async (token) => {
               console.log({ token });
@@ -137,6 +131,7 @@ const citiesRef = collection(db, "Notifications");
     /* navigator.serviceWorker.addEventListener("message", (e) => {
       console.log("newMessage");
       console.log(e);
+      window.location.reload();
     });*/
   }
 })(window);
