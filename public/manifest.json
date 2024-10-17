@@ -5,12 +5,12 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "/512.png",
+      "src": "https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "/192.png",
+      "src": "https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png",
       "type": "image/png",
       "sizes": "192x192"
     }
