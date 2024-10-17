@@ -8,21 +8,6 @@
   flex-direction: column;
   align-items: center;
 }
-/* width */
-html::-webkit-scrollbar {
-  width: 50px;
-}
-
-/* Track */
-html::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-/* Handle */
-html::-webkit-scrollbar-thumb {
-  background: #bd10e0;
-  border-radius: 10px;
-}
 
 a {
   text-decoration: none;
