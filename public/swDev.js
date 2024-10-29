@@ -93,7 +93,7 @@ const citiesRef = collection(db, "Notifications");
               "BMsFehnpoVY7WSEW9Rjffbh8zMFKR_HC7sgGkjM0nE0tKMobiIyMo3t3e4JqRbPxIQeAYqpn-b7mYdhdRSmM1TM",
           })
             .then(async (token) => {
-              console.log({ token });
+              // console.log({ token });
               window.localStorage.setItem("fcm_token", token);
               const querySnapshot = await getDocs(
                 collection(db, "DeviceTokens")
@@ -102,7 +102,10 @@ const citiesRef = collection(db, "Notifications");
               querySnapshot.forEach((doc) => {
                 arrayNotification.push(doc.data().token);
               });
+              console.log(arrayNotification);
+              console.log(arrayNotification.includes(token));
               if (!arrayNotification.includes(token)) {
+                console.log("dingo");
                 const res = await addDoc(collection(db, "DeviceTokens"), {
                   token,
                 });
@@ -128,11 +131,11 @@ const citiesRef = collection(db, "Notifications");
       await requestPermission(messaging);
     }
 
-    /* navigator.serviceWorker.addEventListener("message", (e) => {
+    /*  navigator.serviceWorker.addEventListener("message", (e) => {
       console.log("newMessage");
       console.log(e);
       window.location.reload();
-    });*/
+    }); */
   }
 })(window);
 

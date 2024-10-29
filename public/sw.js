@@ -126,12 +126,12 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [showNotif, querySnapshot] = await Promise.all([
-              promiseChain,
+            const [/* showNotif, */ querySnapshot] = await Promise.all([
+              /*  promiseChain, */
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
-            console.log({ showNotif });
+            //console.log({ showNotif });
             //console.log({ querySnapshot });
             const unreadNotification = querySnapshot.docs.length;
             console.log({ unreadNotification });
@@ -178,12 +178,12 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [showNotif, querySnapshot] = await Promise.all([
-              promiseChain,
+            const [/* showNotif, */ querySnapshot] = await Promise.all([
+              /*  promiseChain, */
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
-            console.log({ showNotif });
+            //console.log({ showNotif });
             //console.log({ querySnapshot });
             const unreadNotification = querySnapshot.docs.length;
             console.log({ unreadNotification });
@@ -221,12 +221,12 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [showNotif, querySnapshot] = await Promise.all([
-              promiseChain,
+            const [/* showNotif, */ querySnapshot] = await Promise.all([
+              /*  promiseChain, */
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
-            console.log({ showNotif });
+            // console.log({ showNotif });
             //console.log({ querySnapshot });
             const unreadNotification = querySnapshot.docs.length;
             console.log({ unreadNotification });
@@ -272,12 +272,12 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [showNotif, querySnapshot] = await Promise.all([
-              promiseChain,
-              /* citiesRef.get(), */
+            const [/* showNotif, */ querySnapshot] = await Promise.all([
+              /* promiseChain, */
+              citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
-            console.log({ showNotif });
+            //console.log({ showNotif });
             //console.log({ querySnapshot });
             const unreadNotification = querySnapshot.docs.length;
             console.log({ unreadNotification });
