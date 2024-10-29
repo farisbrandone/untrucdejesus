@@ -123,26 +123,30 @@ importScripts(
       });
       event.waitUntil(
         (async () => {
-          //const total = await citiesRef.add({ title, body, icon, actionUrl })
-          //console.log({ total });
-          const [showNotif, querySnapshot] = await promise.all([
-            promiseChain,
-            citiesRef.get(),
-          ]);
-          //const querySnapshot = await citiesRef.get();
-          console.log({ showNotif });
-          //console.log({ querySnapshot });
-          const unreadNotification = querySnapshot.docs.length;
-          console.log({ unreadNotification });
+          try {
+            //const total = await citiesRef.add({ title, body, icon, actionUrl })
+            //console.log({ total });
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
+              citiesRef.get(),
+            ]);
+            //const querySnapshot = await citiesRef.get();
+            console.log({ showNotif });
+            //console.log({ querySnapshot });
+            const unreadNotification = querySnapshot.docs.length;
+            console.log({ unreadNotification });
 
-          if (navigator.setAppBadge) {
-            console.log("The App Badging API is supported inside push!");
-            console.log({ pushNavigator: navigator });
-            if (unreadNotification === 0 || unreadNotification) {
-              navigator.clearAppBadge();
-            } else {
-              navigator.setAppBadge(unreadNotification);
+            if (navigator.setAppBadge) {
+              console.log("The App Badging API is supported inside push!");
+              console.log({ pushNavigator: navigator });
+              if (unreadNotification === 0 || unreadNotification) {
+                navigator.clearAppBadge();
+              } else {
+                navigator.setAppBadge(unreadNotification);
+              }
             }
+          } catch (error) {
+            console.log({ error0: error });
           }
         })()
       );
@@ -171,26 +175,30 @@ importScripts(
       });
       event.waitUntil(
         (async () => {
-          //const total = await citiesRef.add({ title, body, icon, actionUrl })
-          //console.log({ total });
-          const [showNotif, querySnapshot] = await promise.all([
-            promiseChain,
-            citiesRef.get(),
-          ]);
-          //const querySnapshot = await citiesRef.get();
-          console.log({ showNotif });
-          //console.log({ querySnapshot });
-          const unreadNotification = querySnapshot.docs.length;
-          console.log({ unreadNotification });
+          try {
+            //const total = await citiesRef.add({ title, body, icon, actionUrl })
+            //console.log({ total });
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
+              citiesRef.get(),
+            ]);
+            //const querySnapshot = await citiesRef.get();
+            console.log({ showNotif });
+            //console.log({ querySnapshot });
+            const unreadNotification = querySnapshot.docs.length;
+            console.log({ unreadNotification });
 
-          if (navigator.setAppBadge) {
-            console.log("The App Badging API is supported inside push!");
-            console.log({ pushNavigator: navigator });
-            if (unreadNotification === 0 || unreadNotification) {
-              navigator.clearAppBadge();
-            } else {
-              navigator.setAppBadge(unreadNotification);
+            if (navigator.setAppBadge) {
+              console.log("The App Badging API is supported inside push!");
+              console.log({ pushNavigator: navigator });
+              if (unreadNotification === 0 || unreadNotification) {
+                navigator.clearAppBadge();
+              } else {
+                navigator.setAppBadge(unreadNotification);
+              }
             }
+          } catch (error) {
+            console.log({ error1: error });
           }
         })()
       );
@@ -210,26 +218,30 @@ importScripts(
       });
       event.waitUntil(
         (async () => {
-          //const total = await citiesRef.add({ title, body, icon, actionUrl })
-          //console.log({ total });
-          const [showNotif, querySnapshot] = await promise.all([
-            promiseChain,
-            citiesRef.get(),
-          ]);
-          //const querySnapshot = await citiesRef.get();
-          console.log({ showNotif });
-          //console.log({ querySnapshot });
-          const unreadNotification = querySnapshot.docs.length;
-          console.log({ unreadNotification });
+          try {
+            //const total = await citiesRef.add({ title, body, icon, actionUrl })
+            //console.log({ total });
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
+              citiesRef.get(),
+            ]);
+            //const querySnapshot = await citiesRef.get();
+            console.log({ showNotif });
+            //console.log({ querySnapshot });
+            const unreadNotification = querySnapshot.docs.length;
+            console.log({ unreadNotification });
 
-          if (navigator.setAppBadge) {
-            console.log("The App Badging API is supported inside push!");
-            console.log({ pushNavigator: navigator });
-            if (unreadNotification === 0 || unreadNotification) {
-              navigator.clearAppBadge();
-            } else {
-              navigator.setAppBadge(unreadNotification);
+            if (navigator.setAppBadge) {
+              console.log("The App Badging API is supported inside push!");
+              console.log({ pushNavigator: navigator });
+              if (unreadNotification === 0 || unreadNotification) {
+                navigator.clearAppBadge();
+              } else {
+                navigator.setAppBadge(unreadNotification);
+              }
             }
+          } catch (error) {
+            console.log({ error2: error });
           }
         })()
       );
@@ -257,26 +269,30 @@ importScripts(
       });
       event.waitUntil(
         (async () => {
-          //const total = await citiesRef.add({ title, body, icon, actionUrl })
-          //console.log({ total });
-          const [showNotif, querySnapshot] = await promise.all([
-            promiseChain,
-            citiesRef.get(),
-          ]);
-          //const querySnapshot = await citiesRef.get();
-          console.log({ showNotif });
-          //console.log({ querySnapshot });
-          const unreadNotification = querySnapshot.docs.length;
-          console.log({ unreadNotification });
+          try {
+            //const total = await citiesRef.add({ title, body, icon, actionUrl })
+            //console.log({ total });
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
+              /* citiesRef.get(), */
+            ]);
+            //const querySnapshot = await citiesRef.get();
+            console.log({ showNotif });
+            //console.log({ querySnapshot });
+            const unreadNotification = querySnapshot.docs.length;
+            console.log({ unreadNotification });
 
-          if (navigator.setAppBadge) {
-            console.log("The App Badging API is supported inside push!");
-            console.log({ pushNavigator: navigator });
-            if (unreadNotification === 0 || unreadNotification) {
-              navigator.clearAppBadge();
-            } else {
-              navigator.setAppBadge(unreadNotification);
+            if (navigator.setAppBadge) {
+              console.log("The App Badging API is supported inside push!");
+              console.log({ pushNavigator: navigator });
+              if (unreadNotification === 0 || unreadNotification) {
+                navigator.clearAppBadge();
+              } else {
+                navigator.setAppBadge(unreadNotification);
+              }
             }
+          } catch (error) {
+            console.log({ error3: error });
           }
         })()
       );

@@ -40,12 +40,11 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
   });*/
 
   const deleteNotification = async (id: string) => {
-    console.log("ttttt", id);
     const docRef = doc(db, "Notifications", id);
     try {
       const result = await deleteDoc(docRef);
       console.log(result);
-      console.log({ dinco: "susu" });
+
       const querySnapshot = await getDocs(collection(db, "Notifications"));
       const arrayNotification: any[] = [];
       querySnapshot.forEach((doc) => {
@@ -60,7 +59,6 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
       console.log({ unreadNotification });
 
       if (navigator.setAppBadge) {
-        console.log("The App Badging API is supported!");
         console.log({ navigator });
         if (unreadNotification === 0) {
           navigator.clearAppBadge();
@@ -70,18 +68,16 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
       }
       window.location.reload();
     } catch (error) {
-      console.log("took");
       console.error(error);
     }
   };
   useEffect(() => {
     (async () => {
       try {
-        console.log("doudou");
         const querySnapshot = await getDocs(collection(db, "Notifications"));
-        querySnapshot.forEach((doc) => {
+        /*  querySnapshot.forEach((doc) => {
           console.log(`${doc.id} => ${doc.data().title}`);
-        });
+        }); */
         if (querySnapshot && querySnapshot.docs.length !== 0) {
           const arrayNotification: any[] = [];
           querySnapshot.forEach((doc) => {
@@ -96,7 +92,6 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
           setNotification(() => [...arrayNotification]);
         }
         setLoading(false);
-        console.log("la fin");
       } catch (error) {
         setErrorLoad("Une erreur est survenu: vérifier votre connexion");
       } finally {
@@ -109,6 +104,12 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
       console.log({ onMessage: e.data.notification });
       //setNotification((prev) => [...prev,e.data.notification]);
     });
+    return () => {
+      navigator.serviceWorker.removeEventListener("message", (e) => {
+        console.log({ onMessage: e.data.notification });
+        //setNotification((prev) => [...prev,e.data.notification]);
+      });
+    };
   }, []);
 
   if (loading) {
