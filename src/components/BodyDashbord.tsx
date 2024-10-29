@@ -14,7 +14,7 @@ function BodyDashbord() {
       </div>
 
       <a
-        href=""
+        href="https://trucdejesus.smartcommunity.biz/f/bDoqa"
         className="mt-4 mx-auto px-[40px] py-[10px] rounded-[80px] bg-[#f8e71c] font-bold cursor-pointer buttonConnect flex flex-col items-center transition-colors"
       >
         <p className="text-[18px] sm:text-[20px] font-sans text-center ">
@@ -26,7 +26,10 @@ function BodyDashbord() {
       </a>
 
       <div className="w-full flex flex-col items-center mt-10 gap-8 abonnement">
-        <a className="text-center flex flex-col justify-center text-[24px] sm:text-[28px] font-extrabold cursor-pointer pp">
+        <a
+          href="https://www.trucdejesus.com/rejoindre"
+          className="text-center flex flex-col justify-center text-[24px] sm:text-[28px] font-extrabold cursor-pointer pp"
+        >
           Pas encore Abonné(e) ?
         </a>
         <div className="text-[#000] w-[40px] text-center rotate-180 self-center triangle -mt-5">
@@ -52,16 +55,22 @@ function BodyDashbord() {
             loading="lazy"
             width={311}
             height={500}
-            className="cursor-pointer rounded-lg shadow-2xl bg-slate-500 border-t-white border-solid border-[5px]"
+            className="cursor-pointer rounded-lg shadow-2xl bg-white border-t-white border-solid border-[5px]"
           />
         </div>
       </div>
       <div className="relative w-full mt-8">
-        <a className="relative text-center px-6 py-4 flex flex-col justify-center rounded-[45px] w-[311px] bg-[#e6c068] mx-auto z-[50] -translate-x-1 buttonAbonnement">
+        <a
+          href="https://www.trucdejesus.com/donateurs-engages"
+          className="relative text-center px-6 py-4 flex flex-col justify-center rounded-[45px] w-[311px] bg-[#e6c068] mx-auto z-[50] -translate-x-1 buttonAbonnement"
+        >
           <p className="text-[18px] font-bold ">Deviens Donateur Engagé</p>
           <p className="text-white">En savoir plus</p>
         </a>
-        <a className="w-[100vw] sm:w-[434px] flex justify-center text-center text-[18px] font-bold pt-6 mx-auto -translate-y-[110px]">
+        <a
+          href="https://www.trucdejesus.com/donateurs-engages"
+          className="w-[100vw] sm:w-[434px] flex justify-center text-center text-[18px] font-bold pt-6 mx-auto -translate-y-[110px]"
+        >
           <img
             src="https://d1yei2z3i6k35z.cloudfront.net/5322770/66e186a1cd0cb_GLOIREADIEU.png"
             alt="Devenir Donateur Engagé Un Truc de JÉSUS !"
@@ -73,7 +82,7 @@ function BodyDashbord() {
       <div className="w-[98vw] sm:w-full self-center sm:px-5 flex flex-col items-center h-[200px]  sm:h-[400px] mx-auto">
         <div className="partQrcode w-full flex-[200px]  sm:flex-[400px] shadow-inner flex items-center justify-center ">
           <a
-            href=""
+            href="https://www.trucdejesus.com"
             className=" text-[11px] sm:text-[16px] font-medium bg-black text-white py-2 sm:py-3 px-4 rounded-[6px] sm:rounded-[10px]  buttonRetourSurSitePublic"
           >
             Retour site Public
@@ -92,7 +101,10 @@ function BodyDashbord() {
         </div>
         <ul className="text-white flex items-center gap-5 socialIcon mt-5">
           <li className="bg-black ">
-            <a href="" title="facebook">
+            <a
+              href="https://www.facebook.com/login/?locale=fr_FR"
+              title="facebook"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -110,7 +122,7 @@ function BodyDashbord() {
             </a>
           </li>
           <li className="bg-black">
-            <a href="" title="tiktok">
+            <a href="https://www.tiktok.com/login" title="tiktok">
               <svg
                 fill="#fff"
                 width="18px"
@@ -125,7 +137,7 @@ function BodyDashbord() {
             </a>
           </li>
           <li className="bg-black">
-            <a href="" title="Linkedln">
+            <a href="https://www.linkedin.com/login/fr" title="Linkedln">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -145,7 +157,10 @@ function BodyDashbord() {
             </a>
           </li>
           <li className="bg-black">
-            <a href="" title="instagram">
+            <a
+              href="https://www.instagram.com/accounts/login/"
+              title="instagram"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

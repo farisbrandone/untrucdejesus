@@ -23,8 +23,8 @@ importScripts(
 
   firebase.initializeApp(firebaseConfig);
   messaging = firebase.messaging();
-  db = firebase.firestore();
-  citiesRef = db.collection("Notifications");
+  const db = firebase.firestore();
+  const citiesRef = db.collection("Notifications");
   const PREFIX = "key_cache";
 
   self.addEventListener("install", (event) => {
@@ -88,7 +88,7 @@ importScripts(
   });
 
   self.addEventListener("push", async function (event) {
-    event.preventDefault();
+    //event.preventDefault();
     console.log("push");
     const message = event.data.json();
     console.log({ message });
@@ -109,15 +109,12 @@ importScripts(
 
       const notificationOptions = {
         body: trueBody,
-        vibrate: [200, 100, 200, 100, 200, 100, 200],
-        tag: "vibration-sample",
-        actions: [
-          {
-            action: "Cliquez ici",
-            title: "Cliquez ici",
-          },
-        ],
+        badge:
+          "https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png", // Chemin vers votre icône de badge
+        sound: "/musicnotification.wav",
       };
+
+      event.preventDefault();
 
       const promiseChain = new Promise((resolve) => {
         self.registration
@@ -153,8 +150,9 @@ importScripts(
       const notificationOptions = {
         body: bodyAction[0],
         icon: titleIcon[1],
-        vibrate: [200, 100, 200, 100, 200, 100, 200],
-        tag: "vibration-sample",
+        badge:
+          "https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png", // Chemin vers votre icône de badge
+        sound: "/musicnotification.wav",
         actions: [
           {
             action: "Cliquez ici",
@@ -200,14 +198,9 @@ importScripts(
       const notificationOptions = {
         body: bodyAction[0],
         icon: titleIcon[1],
-        vibrate: [200, 100, 200, 100, 200, 100, 200],
-        tag: "vibration-sample",
-        actions: [
-          {
-            action: "Cliquez ici",
-            title: "Cliquez ici",
-          },
-        ],
+        badge:
+          "https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png", // Chemin vers votre icône de badge
+        sound: "/musicnotification.wav",
       };
 
       const promiseChain = new Promise((resolve) => {
@@ -243,8 +236,9 @@ importScripts(
     } else if (bodyAction.length === 2 && titleIcon.length < 2) {
       const notificationOptions = {
         body: bodyAction[0],
-        vibrate: [200, 100, 200, 100, 200, 100, 200],
-        tag: "vibration-sample",
+        badge:
+          "https://trucdejesus.appowls.io/assets/apps/user_1837/app_3120/draft/icon/app_logo.png", // Chemin vers votre icône de badge
+        sound: "/musicnotification.wav",
         actions: [
           {
             action: "Cliquez ici",
@@ -310,7 +304,7 @@ importScripts(
               return true;
             }
           });
-          if (!hadWindowToFocus) {
+          if (!hadWindowToFocus && actionUrl) {
             return clients.openWindow(actionUrl);
           }
         })
