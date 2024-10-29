@@ -116,11 +116,11 @@ importScripts(
 
       event.preventDefault();
 
-      const promiseChain = new Promise((resolve) => {
+      /*  const promiseChain = new Promise((resolve) => {
         self.registration
           .showNotification(trueTitle, notificationOptions)
           .then(() => resolve("ddd"));
-      });
+      }); */
       event.waitUntil(
         (async () => {
           try {
