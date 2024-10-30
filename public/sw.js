@@ -94,7 +94,7 @@ importScripts(
     console.log({ message });
 
     const {
-      notification: { title, body },
+      data: { title, body },
     } = message;
     const titleIcon = title.split("$-*");
     const bodyAction = body.split("$-*");
@@ -116,18 +116,18 @@ importScripts(
 
       event.preventDefault();
 
-      /*  const promiseChain = new Promise((resolve) => {
+      const promiseChain = new Promise((resolve) => {
         self.registration
           .showNotification(trueTitle, notificationOptions)
           .then(() => resolve("ddd"));
-      }); */
+      });
       event.waitUntil(
         (async () => {
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [/* showNotif, */ querySnapshot] = await Promise.all([
-              /*  promiseChain, */
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
@@ -178,8 +178,8 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [/* showNotif, */ querySnapshot] = await Promise.all([
-              /*  promiseChain, */
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
@@ -221,8 +221,8 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [/* showNotif, */ querySnapshot] = await Promise.all([
-              /*  promiseChain, */
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
@@ -272,8 +272,8 @@ importScripts(
           try {
             //const total = await citiesRef.add({ title, body, icon, actionUrl })
             //console.log({ total });
-            const [/* showNotif, */ querySnapshot] = await Promise.all([
-              /* promiseChain, */
+            const [showNotif, querySnapshot] = await Promise.all([
+              promiseChain,
               citiesRef.get(),
             ]);
             //const querySnapshot = await citiesRef.get();
