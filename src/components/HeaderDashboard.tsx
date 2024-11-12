@@ -39,8 +39,8 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
     console.log(`${doc.id} => ${doc.data()}`);
   });*/
 
-  const deleteNotification = async (id: string) => {
-    const docRef = doc(db, "Notifications", id);
+  const deleteNotification = async (docu: any) => {
+    const docRef = doc(db, "Notifications", docu.id);
     try {
       const result = await deleteDoc(docRef);
       console.log(result);
@@ -66,7 +66,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
           navigator.setAppBadge(unreadNotification);
         }
       }
-      window.location.reload();
+      window.location.replace(docu.actionUrl);
     } catch (error) {
       console.error(error);
     }
@@ -150,14 +150,14 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content -right-3 menu bg-white text-gray-800 rounded-box z-[1] w-52 p-2 mr-4 shadow"
+          className="dropdown-content -right-3 menu bg-white text-gray-800 rounded-box z-[1] w-52 max-h-[200px] p-2 mr-4 shadow overflow-y-auto"
         >
           {notification.length !== 0 ? (
             notification.map((doc, index) => {
               return (
                 <li
                   key={index}
-                  onClick={() => deleteNotification(doc.id)}
+                  onClick={() => deleteNotification(doc)}
                   className="cursor-pointer"
                 >
                   <p className="text-black font-semibold">{doc.title}</p>

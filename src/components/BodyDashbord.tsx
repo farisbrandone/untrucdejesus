@@ -48,15 +48,20 @@ function BodyDashbord() {
             <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
           </svg>
         </div>
-        <div className="w-full flex flex-col items-center -mt-[32px]">
-          <img
-            src="https://d1yei2z3i6k35z.cloudfront.net/5322770/66e14cea5fe8d_Capturedecran2024-03-27a18.13.05.png"
-            alt="Accès rapide Réseau social 100% JESUS"
-            loading="lazy"
-            width={311}
-            height={500}
-            className="cursor-pointer rounded-lg shadow-2xl bg-white border-t-white border-solid border-[5px]"
-          />
+        <div className="w-full flex flex-col items-center">
+          <a
+            href="https://trucdejesus.com/rejoindre"
+            className="flex flex-col items-center -mt-[32px] w-[311px] h-[500px] "
+          >
+            <img
+              src="https://d1yei2z3i6k35z.cloudfront.net/5322770/66e14cea5fe8d_Capturedecran2024-03-27a18.13.05.png"
+              alt="Accès rapide Réseau social 100% JESUS"
+              loading="lazy"
+              width={311}
+              height={500}
+              className="cursor-pointer rounded-lg shadow-2xl bg-white border-t-white border-solid border-[5px]"
+            />
+          </a>
         </div>
       </div>
       <div className="relative w-full mt-8">
