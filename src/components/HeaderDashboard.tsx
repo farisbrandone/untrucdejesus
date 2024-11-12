@@ -40,6 +40,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
   });*/
 
   const deleteNotification = async (docu: any) => {
+    console.log({ docu });
     const docRef = doc(db, "Notifications", docu.id);
     try {
       const result = await deleteDoc(docRef);
@@ -52,6 +53,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
           id: doc.id,
           title: doc.data().title,
           body: doc.data().body,
+          actionUrl: doc.data().actionUrl,
         });
       });
       setNotification([...arrayNotification]);
@@ -85,6 +87,7 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
               id: doc.id,
               title: doc.data().title,
               body: doc.data().body,
+              actionUrl: doc.data().actionUrl,
             });
           });
           const unreadNotification = querySnapshot.docs.length;
@@ -104,7 +107,16 @@ export function HeaderDashboard({ loading, setLoading }: loadingType) {
       console.log({ onMessage: e.data.notification });
       //setNotification((prev) => [...prev,e.data.notification]);
     });
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        navigator.clearAppBadge();
+      }
+    });
     return () => {
+      document.removeEventListener("visibilitychange", () => {
+        console.log("gg");
+        //setNotification((prev) => [...prev,e.data.notification]);
+      });
       navigator.serviceWorker.removeEventListener("message", (e) => {
         console.log({ onMessage: e.data.notification });
         //setNotification((prev) => [...prev,e.data.notification]);
